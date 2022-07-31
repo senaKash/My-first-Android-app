@@ -21,46 +21,36 @@ KV = '''
 <ItemDrawer>:
     theme_text_color: "Custom"
     on_release: self.parent.set_color_item(self)
-
     IconLeftWidget:
         id: icon
         icon: root.icon
         theme_text_color: "Custom"
         text_color: root.text_color
-
-
 <ContentNavigationDrawer>:
     orientation: "vertical"
     padding: "8dp"
     spacing: "8dp"
-
     AnchorLayout:
         anchor_x: "left"
         size_hint_y: None
         height: avatar.height
-
         Image:
             id: avatar
             size_hint: None, None
             size: "56dp", "56dp"
             source: "data/logo/kivy-icon-256.png"
-
     MDLabel:
         text: app.title
         font_style: "Button"
         size_hint_y: None
         height: self.texture_size[1]
-
     MDLabel:
         text: app.by_who
         font_style: "Caption"
         size_hint_y: None
         height: self.texture_size[1]
-
     ScrollView:
-
         MDList:
-
             OneLineIconListItem:
                 text: "Главная"
                 on_press:
@@ -68,7 +58,6 @@ KV = '''
                     root.screen_manager.current = "home scr"
                 IconLeftWidgetWithoutTouch:
                     icon: "home"
-
             OneLineIconListItem:
                 text: "Калькулятор"
                 on_press:
@@ -87,8 +76,6 @@ KV = '''
                     
                 IconLeftWidgetWithoutTouch:
                     icon: "table-heart"
-
-
 <ListItemWithIcon>:
     id: the_list_item
     
@@ -96,50 +83,37 @@ KV = '''
         print("Click")
         root.goToSas(the_list_item)
         #print(the_list_item)
-
     IconLeftWidgetWithoutTouch:
         icon: 'atom'
-
-
-
 MDScreen:
-
     MDTopAppBar:
         id: toolbar
         pos_hint: {"top": 1}
         elevation: 10
         title: "MDNavigationDrawer"
         left_action_items: [["menu", lambda x: nav_drawer.set_state("open")]]
-
     MDNavigationLayout:
         x: toolbar.height
-
         ScreenManager:
             id: screen_manager
-
             MDScreen:
                 name: "home scr"
-
                 MDBoxLayout:
                     orientation: 'vertical'
-
                     MDToolbar:
                         title: app.title
                         elevation: 10
                         left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
                         right_action_items: [["alien-outline", lambda x: app.on_alien_click()]]
                         md_bg_color: 0, 0, 0, 1
-
                     MDTabs:
                         id: android_tabs
                         on_tab_switch: app.on_tab_switch(*args)
                         background_color: 0.1, 0.1, 0.1, 1
-
                         
                         Tab:
                             id: tab1 
                             text: "сначала сюда"
-
                             MDLabel:
                                 text: "Привет! Мне нужно сказать вам кое-что неприятное..."
                                 halign: "center"
@@ -163,8 +137,6 @@ MDScreen:
                                 user_font_size: "48sp"
                                 pos_hint: {"center_x": .5, "center_y": .2}
                                 on_release: app.switch_tab_by_object(*args)
-
-
                         Tab:
                             id: tab2
                             text: "потом сюда"
@@ -182,7 +154,6 @@ MDScreen:
                                         font_style: "H6"
                                         bold: True
                                         
-
                                     MDSmartTile:
                                         radius: 24
                                         box_radius: [0, 0, 24, 24]
@@ -202,7 +173,6 @@ MDScreen:
                                         halign: "center"
                                         font_style: "Body1"
                                         
-
                                     MDIconButton:
                                         icon: "arrow-right-bold-circle-outline"
                                         user_font_size: "48sp"
@@ -210,7 +180,6 @@ MDScreen:
                                         #size_hint_y: 0.1
                                         size_hint_x: 0.7
                                         on_release: app.switch_tab_by_object_to_tab_3(*args)
-
                                 
                         Tab:
                             id: tab3
@@ -231,13 +200,11 @@ MDScreen:
                                         bold: True
                                         size_hint_y: 0.99
                                         size_hint_x: 0.7
-
                                     MDLabel:
                                         text: "sdfdsfdsfоапрвапв\\ngkfgjdklhgd\\ndjgusguiewgueuwg\\neshdfuisudif\\ndfs" 
                                         halign: "center"
                                         font_style: "Body1"
                                         #source: "aquacry.png"
-
                                         
                                     MDSmartTile:
                                         radius: 24
@@ -252,7 +219,6 @@ MDScreen:
                                             text: "dfsfsfasdf"
                                             bold: True
                                             color: 1, 1, 1, 1
-
                                     MDSmartTile:
                                         radius: 24
                                         box_radius: [0, 0, 24, 24]
@@ -266,7 +232,6 @@ MDScreen:
                                             text: "Аква плачет без денег("
                                             bold: True
                                             color: 1, 1, 1, 1
-
                                     MDIconButton:
                                         icon: "home-circle-outline"
                                         user_font_size: "48sp"
@@ -274,46 +239,59 @@ MDScreen:
                                         size_hint_y: None
                                         size_hint_x: 0.7
                                         on_release: app.switch_tab_by_object_to_tab_1(*args) 
-
             MDScreen:
                 name: "calculator scr"
                 MDBoxLayout:
                     orientation: 'vertical'
-
                     MDToolbar:
                         title: app.title
                         elevation: 10
                         left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
                         right_action_items: [["alien-outline", lambda x: app.on_alien_click()]]
                         md_bg_color: 0, 0, 0, 1
-                    MDLabel:
-                        text: "calculator Screen 2"
-                        halign: "center"
+                    MDTabs:
+                        id: calcTab
+                        text: "калькулятор"
+                        background_color: 0.1, 0.1, 0.1, 1
 
+                        Tab:
+                            id: tab3
+                            name: "tab 3"
+                            text: "расчет расходов"
+
+                            MDLabel:
+                                text: "calculator Screen 2"
+                                #halign: "center"
+                                x: "10dp"
+                                y: "205dp"
+
+                            
+                            MDTextField:
+                                hint_text: "20000"
+                                #mode: "rectangle"
+                                fill_color: 0, 0, 0, .4
+                                x: "10dp"
+                                y: "100dp"
+                                #size: "320dp", "320dp"
             MDScreen:
                 name: "table scr"
                 MDBoxLayout:
                     orientation: 'vertical'
-
                     MDToolbar:
                         title: app.title
                         elevation: 10
                         left_action_items: [['menu', lambda x: nav_drawer.set_state("open")]]
                         right_action_items: [["alien-outline", lambda x: app.on_alien_click()]]
                         md_bg_color: 0, 0, 0, 1
-
                     ScrollView:
                         MDList:
                             id: container
-
-
                     
                                      
             MDScreen:
                 name: "pashalka"
                 MDBoxLayout:
                     orientation: 'vertical'
-
                     MDToolbar:
                         title: "пасхалочка"
                         elevation: 10
@@ -324,11 +302,8 @@ MDScreen:
                         text: "ты нашел пасхалку, молодец"
                         halign: "center"                            
                          
-
-
         MDNavigationDrawer:
             id: nav_drawer
-
             ContentNavigationDrawer:
                 screen_manager: screen_manager
                 id: content_drawer
